@@ -1,0 +1,3 @@
+*.[oa] 		#ignore all files end with .a or .o
+idea/		#ignore the webstorm config file
+*~		#ignoer the files end with ~
