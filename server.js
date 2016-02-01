@@ -1,6 +1,5 @@
 var http = require("http");
 var url = require("url");
-var formidable = require("formidable");
 
 function start(route, handle) {
   'use strict';
