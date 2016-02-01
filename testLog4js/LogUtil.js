@@ -1,43 +1,16 @@
 /**
  * Created by jianwu.zhang on 2016/02/01.
  */
-var log4js = require('log4js');
-var DevLogger = log4js.getLogger("Dev");
-DevLogger.setLevel(log4js.levels.INFO); // you can also get it from propertis.
-DevLogger.addAppender(new ConsoleAppender(true);
+var log4js = require('./lib/log4js.js');
+var log4jsConf = require('./log4jsConf.json');
 
+log4js.configure(log4jsConf);
 
+var fileLogger = log4js.getLogger(log4jsConf.logCategories.LOGFILE);
+var dateLogger = log4js.getLogger(log4jsConf.logCategories.DATEFILE);
+var consoleLogger = log4js.getLogger(log4jsConf.logCategories.CONSOLE);
 
-
-
-log4js.configure({
-    appenders:[
-        {
-            type:"console"
-        },
-        {
-            type:"dateFile",
-            filename: 'logs/access.log',
-            pattern: "-yyyy-MM-dd.log",
-            maxLogSize: 1024,
-            alwaysIncludePattern: false
-        }
-    ],
-    replaceConsole: true
-});
-//log4js.setGlobalLogLevel(log4js.levels.ERROR);
-
-exports.logger=function(name){
-    var logger = log4js.getLogger(name);
-    logger.setLevel('INFO');
-    return logger;
-};
-//exports.setLogLevel = function(level){
-//    log4js.setGlobalLogLevel(level || log4js.levels.DEBUG);
-//};
-//exports.getLogger = function(file){
-//    return log4js.getLogger(file || "dateFileLog");
-//};
-
-
+exports.fileLogger = fileLogger;
+exports.dateLogger = dateLogger;
+exports.consoleLogger = consoleLogger;
 
